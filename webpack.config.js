@@ -1,5 +1,6 @@
 const path = require('path');
 const uglify = require('uglifyjs-webpack-plugin'); // 压缩js
+const htmlPlugin = require('html-webpack-plugin');
 module.exports={
   //入口文件的配置项
   entry:{
@@ -29,7 +30,14 @@ module.exports={
   },
   //插件，用于生产模版和各项功能
   plugins:[
-    new uglify()
+    // new uglify() // 压缩js
+    new htmlPlugin({
+      minify:{
+        removeAttributeQuotes: true // 去掉html属性引号
+      },
+      hash: true,  // 这样可以有效避免缓存JS
+      template: './src/index.html'   // 是要打包的html模版路径和文件名称
+    })
   ],
   //配置webpack开发服务功能
   devServer:{  //webpack3.6开始webpack-dev-server直接支持热更新
