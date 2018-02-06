@@ -1,4 +1,5 @@
 const path = require('path');
+const uglify = require('uglifyjs-webpack-plugin'); // 压缩js
 module.exports={
   //入口文件的配置项
   entry:{
@@ -16,12 +17,20 @@ module.exports={
     rules:[
       {
         test: /\.css$/,
-        use:['style-loader','css-loader']
+        use:['style-loader','css-loader']  
+        // 方法二：loader:['style-loader','css-loader']
+        // 方法三：use[{
+        //   loader: 'style-loader'
+        // },{
+        //   loader: 'css-loader'
+        // }]
       }
     ]
   },
   //插件，用于生产模版和各项功能
-  plugins:[],
+  plugins:[
+    new uglify()
+  ],
   //配置webpack开发服务功能
   devServer:{  //webpack3.6开始webpack-dev-server直接支持热更新
     //设置基本目录结构
