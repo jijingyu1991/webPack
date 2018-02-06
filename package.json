@@ -1,0 +1,26 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jijingyu1991/webPack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jijingyu1991/webPack/issues"
+  },
+  "homepage": "https://github.com/jijingyu1991/webPack#readme",
+  "devDependencies": {
+    "css-loader": "^0.28.9",
+    "style-loader": "^0.20.1",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}
