@@ -1,6 +1,13 @@
 const path = require('path');
 const uglify = require('uglifyjs-webpack-plugin'); // 压缩js
-const htmlPlugin = require('html-webpack-plugin');
+const htmlPlugin = require('html-webpack-plugin');  // html发布
+const extractTextPlugin = require("extract-text-webpack-plugin");
+// loader不需要引入，插件需要
+
+var website ={
+  publicPath:"http://192.168.0.101:1711/"
+}
+
 module.exports={
   //入口文件的配置项
   entry:{
@@ -11,20 +18,56 @@ module.exports={
     //打包的路径文职
     path:path.resolve(__dirname,'dist'),
     //打包的文件名称
-    filename:'bundle.js'
+    filename:'bundle.js',
+    publicPath: website.publicPath
   },
   //模块：例如解读CSS,图片如何转换，压缩
   module:{
     rules:[
       {
         test: /\.css$/,
-        use:['style-loader','css-loader']  
+        use: extractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
         // 方法二：loader:['style-loader','css-loader']
         // 方法三：use[{
         //   loader: 'style-loader'
         // },{
         //   loader: 'css-loader'
         // }]
+      },
+      {
+        test: /\.(png|jpg|gif)/,
+        use:[{
+          loader: 'url-loader',
+          options: {
+            limit:5000,  // 图片大于5000字节拷贝图片生成路径，小于5000生成base64
+            outputPath:'images/' // 图片在dis文件夹下的路径
+          }
+        }]
+      },
+      {
+        test: /\.(htm|html)$/i,
+        use:[ 'html-withimg-loader']
+      },
+      {
+        test: /\.less$/,
+        // use:[{
+        //   loader: "style-loader" // creates style nodes from JS strings  loader 加载顺序不能变
+        // }, {
+        //    loader: "css-loader" // translates CSS into CommonJS
+        // }, {
+        //    loader: "less-loader" // compiles Less to CSS
+      //  }]
+      use: extractTextPlugin.extract({
+        use: [{
+          loader: "css-loader"
+        },{
+          loader: "less-loader"
+        }],
+        fallback: "style-loader"
+      })
       }
     ]
   },
@@ -37,7 +80,8 @@ module.exports={
       },
       hash: true,  // 这样可以有效避免缓存JS
       template: './src/index.html'   // 是要打包的html模版路径和文件名称
-    })
+    }),
+    new extractTextPlugin("css/index.css")  // 分离后的路径位置
   ],
   //配置webpack开发服务功能
   devServer:{  //webpack3.6开始webpack-dev-server直接支持热更新

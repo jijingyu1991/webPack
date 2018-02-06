@@ -2,3 +2,8 @@ body{
   background-color: red;
   color: white;
 }
+#img{
+  background-image: url(../images/tx.jpg);
+  width: 1000px;
+  height: 1000px;
+}
