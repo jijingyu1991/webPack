@@ -36,8 +36,7 @@ module.exports={
         // },{
         //   loader: 'css-loader'
         // }]
-      },
-      {
+      },{
         test: /\.(png|jpg|gif)/,
         use:[{
           loader: 'url-loader',
@@ -46,12 +45,10 @@ module.exports={
             outputPath:'images/' // 图片在dis文件夹下的路径
           }
         }]
-      },
-      {
+      },{
         test: /\.(htm|html)$/i,
         use:[ 'html-withimg-loader']
-      },
-      {
+      },{
         test: /\.less$/,
         // use:[{
         //   loader: "style-loader" // creates style nodes from JS strings  loader 加载顺序不能变
@@ -68,6 +65,23 @@ module.exports={
         }],
         fallback: "style-loader"
       })
+      },{
+        test: /\.scss$/,
+      //   use:[{
+      //     loader: "style-loader" // creates style nodes from JS strings  loader 加载顺序不能变
+      //   }, {
+      //      loader: "css-loader" // translates CSS into CommonJS
+      //   }, {
+      //      loader: "sass-loader" // compiles Less to CSS
+      //  }]
+        use: extractTextPlugin.extract({
+          use: [{
+            loader: "css-loader"
+          },{
+            loader: "sass-loader"
+          }],
+          fallback: "style-loader"
+        })
       }
     ]
   },

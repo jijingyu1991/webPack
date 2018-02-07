@@ -11,3 +11,7 @@ body{
   height: 200px;
   background-color: #000000;
 }
+#sass {
+  width: 40px;
+  height: 40px;
+  background-color: blue; }

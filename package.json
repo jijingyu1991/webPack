@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/jijingyu1991/webPack#readme",
   "devDependencies": {
+    "node-sass":"^4.7.2",
+    "sass-loader":"^6.0.6",
     "less": "^2.7.3",
     "less-loader":"^4.0.5",
     "html-withimg-loader": "^0.1.16",
