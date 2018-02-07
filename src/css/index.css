@@ -6,4 +6,10 @@ body{
   background-image: url(../images/tx.jpg);
   width: 1000px;
   height: 1000px;
+  transform: rotate(45deg);
+  box-shadow: 1px 1px 0 rgb(0,0,0,.25)
+}
+#aa{
+  background-color: red;
+  color: white;
 }

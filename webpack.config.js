@@ -1,7 +1,9 @@
 const path = require('path');
+const glob = require('glob')
 const uglify = require('uglifyjs-webpack-plugin'); // 压缩js
 const htmlPlugin = require('html-webpack-plugin');  // html发布
-const extractTextPlugin = require("extract-text-webpack-plugin");
+const extractTextPlugin = require("extract-text-webpack-plugin"); // 样式文件打包分离 
+const PurifyCSSPlugin = require("purifycss-webpack"); // 消除未使用的css
 // loader不需要引入，插件需要
 
 var website ={
@@ -28,7 +30,10 @@ module.exports={
         test: /\.css$/,
         use: extractTextPlugin.extract({
           fallback: "style-loader",
-          use: "css-loader"
+          use: [
+            {loader: 'css-loader'},
+            {loader: 'postcss-loader'}
+          ]
         })
         // 方法二：loader:['style-loader','css-loader']
         // 方法三：use[{
@@ -95,7 +100,10 @@ module.exports={
       hash: true,  // 这样可以有效避免缓存JS
       template: './src/index.html'   // 是要打包的html模版路径和文件名称
     }),
-    new extractTextPlugin("css/index.css")  // 分离后的路径位置
+    new extractTextPlugin("css/index.css"),  // 分离后的路径位置
+    new PurifyCSSPlugin({
+      paths: glob.sync(path.join(__dirname, 'src/*.html'))  // src下所有html应用的css
+    })
   ],
   //配置webpack开发服务功能
   devServer:{  //webpack3.6开始webpack-dev-server直接支持热更新

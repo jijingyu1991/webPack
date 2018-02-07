@@ -1,17 +1,26 @@
-body{
+body {
   background-color: red;
   color: white;
 }
-#img{
+
+#img {
   background-image: url(http://192.168.0.101:1711/images/54c99ca46858f38099f9806f11ce6df8.jpg);
   width: 1000px;
   height: 1000px;
-}#less {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-box-shadow: 1px 1px 0 rgb(0,0,0,.25);
+  box-shadow: 1px 1px 0 rgb(0,0,0,.25);
+}
+
+#less {
   width: 300px;
   height: 200px;
   background-color: #000000;
 }
+
 #sass {
   width: 40px;
   height: 40px;
-  background-color: blue; }
+  background-color: blue;
+}
