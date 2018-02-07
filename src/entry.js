@@ -3,4 +3,7 @@ import css from './css/index.css'
 import less from './css/black.less'
 import sass from './css/blue.scss'
 
-document.getElementById('title').innerHTML='Hello Webpack!!';
+{
+  let a = "Hello Webpack!!"
+  document.getElementById('title').innerHTML = a;
+}

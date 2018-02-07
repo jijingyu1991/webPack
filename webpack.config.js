@@ -87,6 +87,17 @@ module.exports={
           }],
           fallback: "style-loader"
         })
+      },{
+        test: /\.(jsx|js)$/,
+        use:{
+          loader: 'babel-loader',
+          // options:{    // 一般写到.babelre文件中
+          //   presets:[
+          //     "es2015", "react"
+          //   ]
+          // }
+        },
+        exclude: /node_modules/
       }
     ]
   },

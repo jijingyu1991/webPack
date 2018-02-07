@@ -65,22 +65,29 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_index_css__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_index_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_black_less__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_black_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_black_less__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_blue_scss__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_blue_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__css_blue_scss__);
-//入口文件的配置项
 
 
+var _index = __webpack_require__(1);
 
+var _index2 = _interopRequireDefault(_index);
 
-document.getElementById('title').innerHTML='Hello Webpack!!';
+var _black = __webpack_require__(2);
+
+var _black2 = _interopRequireDefault(_black);
+
+var _blue = __webpack_require__(3);
+
+var _blue2 = _interopRequireDefault(_blue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+{
+  var a = "Hello Webpack!!";
+  document.getElementById('title').innerHTML = a;
+} //入口文件的配置项
 
 /***/ }),
 /* 1 */
