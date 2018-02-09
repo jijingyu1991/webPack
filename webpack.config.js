@@ -4,14 +4,22 @@ const uglify = require('uglifyjs-webpack-plugin'); // 压缩js
 const htmlPlugin = require('html-webpack-plugin');  // html发布
 const extractTextPlugin = require("extract-text-webpack-plugin"); // 样式文件打包分离 
 const PurifyCSSPlugin = require("purifycss-webpack"); // 消除未使用的css
-// loader不需要引入，插件需要
 
-var website ={
-  publicPath:"http://192.168.0.101:1711/"
+console.log( encodeURIComponent(process.env.type) );
+// loader不需要引入，插件需要
+if (process.env.type == 'build'){
+  var website ={
+    publicPath:"http://gtt.com:1711/"
+  }
+} else {
+  var website ={
+    publicPath:"http://192.168.0.101:1711/"
+  }
 }
 
+
 module.exports={
-  devtool:'eval-source-map',
+  // devtool:'eval-source-map',
   //入口文件的配置项
   entry:{
     entry:'./src/entry.js'
