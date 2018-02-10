@@ -5,6 +5,8 @@ const htmlPlugin = require('html-webpack-plugin');  // html发布
 const extractTextPlugin = require("extract-text-webpack-plugin"); // 样式文件打包分离 
 const PurifyCSSPlugin = require("purifycss-webpack"); // 消除未使用的css
 
+const entry = require("./build/entry_webpack")
+
 console.log( encodeURIComponent(process.env.type) );
 // loader不需要引入，插件需要
 if (process.env.type == 'build'){
@@ -21,9 +23,7 @@ if (process.env.type == 'build'){
 module.exports={
   // devtool:'eval-source-map',
   //入口文件的配置项
-  entry:{
-    entry:'./src/entry.js'
-  },
+  entry: entry.path,
   //出口文件的配置项
   output:{
     //打包的路径文职

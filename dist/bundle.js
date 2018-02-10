@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "http://192.168.0.101:1711/";
+/******/ 	__webpack_require__.p = "http://gtt.com:1711/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
@@ -82,12 +82,19 @@ var _blue = __webpack_require__(3);
 
 var _blue2 = _interopRequireDefault(_blue);
 
+var _module = __webpack_require__(4);
+
+var _module2 = _interopRequireDefault(_module);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//入口文件的配置项
 {
   var a = "Hello Webpack!!";
   document.getElementById('title').innerHTML = a;
-} //入口文件的配置项
+}
+
+(0, _module2.default)();
 
 /***/ }),
 /* 1 */
@@ -106,6 +113,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function module1() {
+  alert('module');
+}
+module.exports = module1;
 
 /***/ })
 /******/ ]);
