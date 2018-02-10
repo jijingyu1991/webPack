@@ -8,5 +8,9 @@ import mo from './module'
   let a = "Hello Webpack!!";
   document.getElementById('title').innerHTML = a;
 }
-$("#title").html("Hello jquery11")
+$("#title").html("Hello jquery11");
 // mo()
+
+var json = require("../config.json");
+console.log(json);
+$("#jsons").html(json.name + "website:" + json.webSite);

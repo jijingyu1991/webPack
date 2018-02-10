@@ -35,6 +35,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 }
 $("#title").html("Hello jquery11");
 // mo()
+
+var json = __webpack_require__(8);
+$("#json").innerHTML = json.name + "website:" + json.webSite;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
@@ -66,6 +69,12 @@ function module1() {
   alert('module');
 }
 module.exports = module1;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = {"name":"gtt","webSite":"gtt.com"}
 
 /***/ })
 ],[3]);

@@ -117,7 +117,7 @@ module.exports={
     // new uglify() // 压缩js
     new webpack.optimize.CommonsChunkPlugin({
       name:['jquerys','vue'],   // 对应入口文件的配置的对象名称
-      filename: 'assets/js/[name].[ext]',   //  抽离路径  [ext]扩展名跟随原文件,目前实测无效
+      filename: 'assets/js/[name].js',   //  抽离路径  [ext]扩展名跟随原文件,目前实测无效
       minChunks:2     // 最小抽离个数
     }),
     new webpack.ProvidePlugin({   // 加第三方库
@@ -139,7 +139,8 @@ module.exports={
     new copyWebpackPlugin([{
       from:__dirname + '/src/public',
       to:'./public'
-    }])  // 静态资源集中输出
+    }]),  // 静态资源集中输出
+    new webpack.HotModuleReplacementPlugin()
   ],
   //配置webpack开发服务功能
   devServer:{  //webpack3.6开始webpack-dev-server直接支持热更新
