@@ -114,7 +114,12 @@ module.exports={
   //插件，用于生产模版和各项功能
   plugins:[
     // new uglify() // 压缩js
-    new webpack.ProvidePlugin({
+    new webpack.optimize.CommonsChunkPlugin({
+      name:['jquerys','vue'],   // 对应入口文件的配置的对象名称
+      filename: 'assets/js/[name].js',   //  抽离路径  [ext]扩展名跟随原文件,目前实测无效
+      minChunks:2     // 最小抽离个数
+    }),
+    new webpack.ProvidePlugin({   // 加第三方库
       $:"jquery",
       JQuery:"jquery"
     }),
@@ -129,7 +134,7 @@ module.exports={
     new PurifyCSSPlugin({
       paths: glob.sync(path.join(__dirname, 'src/*.html'))  // src下所有html应用的css
     }),
-    new webpack.BannerPlugin('gtt author')
+    new webpack.BannerPlugin('gtt author') // 加版权
   ],
   //配置webpack开发服务功能
   devServer:{  //webpack3.6开始webpack-dev-server直接支持热更新
