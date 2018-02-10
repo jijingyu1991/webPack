@@ -5,6 +5,7 @@ const htmlPlugin = require('html-webpack-plugin');  // html发布
 const extractTextPlugin = require("extract-text-webpack-plugin"); // 样式文件打包分离 
 const PurifyCSSPlugin = require("purifycss-webpack"); // 消除未使用的css
 const webpack = require('webpack');
+const copyWebpackPlugin = require("copy-webpack-plugin");
 
 const entry = require("./build/entry_webpack")
 
@@ -116,7 +117,7 @@ module.exports={
     // new uglify() // 压缩js
     new webpack.optimize.CommonsChunkPlugin({
       name:['jquerys','vue'],   // 对应入口文件的配置的对象名称
-      filename: 'assets/js/[name].js',   //  抽离路径  [ext]扩展名跟随原文件,目前实测无效
+      filename: 'assets/js/[name].[ext]',   //  抽离路径  [ext]扩展名跟随原文件,目前实测无效
       minChunks:2     // 最小抽离个数
     }),
     new webpack.ProvidePlugin({   // 加第三方库
@@ -134,7 +135,11 @@ module.exports={
     new PurifyCSSPlugin({
       paths: glob.sync(path.join(__dirname, 'src/*.html'))  // src下所有html应用的css
     }),
-    new webpack.BannerPlugin('gtt author') // 加版权
+    new webpack.BannerPlugin('gtt author'), // 加版权
+    new copyWebpackPlugin([{
+      from:__dirname + '/src/public',
+      to:'./public'
+    }])  // 静态资源集中输出
   ],
   //配置webpack开发服务功能
   devServer:{  //webpack3.6开始webpack-dev-server直接支持热更新
@@ -153,6 +158,6 @@ module.exports={
     // 防止重复保存而发生重复编译错误。这里设置的500是半秒内重复保存，不进行打包操作
     aggregateTimeout:500, 
     // 不监听的目录 没有双引号
-    ignored:/node_modules,src/, 
+    ignored:/node_modules/, 
   }
 }
