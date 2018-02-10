@@ -4,6 +4,7 @@ const uglify = require('uglifyjs-webpack-plugin'); // 压缩js
 const htmlPlugin = require('html-webpack-plugin');  // html发布
 const extractTextPlugin = require("extract-text-webpack-plugin"); // 样式文件打包分离 
 const PurifyCSSPlugin = require("purifycss-webpack"); // 消除未使用的css
+const webpack = require('webpack');
 
 const entry = require("./build/entry_webpack")
 
@@ -113,6 +114,10 @@ module.exports={
   //插件，用于生产模版和各项功能
   plugins:[
     // new uglify() // 压缩js
+    new webpack.ProvidePlugin({
+      $:"jquery",
+      JQuery:"jquery"
+    }),
     new htmlPlugin({
       minify:{
         removeAttributeQuotes: true // 去掉html属性引号

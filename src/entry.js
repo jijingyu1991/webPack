@@ -3,9 +3,10 @@ import css from './css/index.css'
 import less from './css/black.less'
 import sass from './css/blue.scss'
 import mo from './module'
+// import $ from 'jquery'
 {
-  let a = "Hello Webpack!!"
+  let a = "Hello Webpack!!";
   document.getElementById('title').innerHTML = a;
 }
-
-mo()
+$("#title").html("Hello jquery11")
+// mo()
