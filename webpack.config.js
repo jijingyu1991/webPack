@@ -128,7 +128,8 @@ module.exports={
     new extractTextPlugin("css/index.css"),  // 分离后的路径位置
     new PurifyCSSPlugin({
       paths: glob.sync(path.join(__dirname, 'src/*.html'))  // src下所有html应用的css
-    })
+    }),
+    new webpack.BannerPlugin('gtt author')
   ],
   //配置webpack开发服务功能
   devServer:{  //webpack3.6开始webpack-dev-server直接支持热更新
@@ -140,5 +141,13 @@ module.exports={
     compress: true,
     //配置服务端口
     port: 1711
+  },
+  watchOptions:{
+    // 检测修改的时间，以毫秒为单位
+    poll:1000, 
+    // 防止重复保存而发生重复编译错误。这里设置的500是半秒内重复保存，不进行打包操作
+    aggregateTimeout:500, 
+    // 不监听的目录 没有双引号
+    ignored:/node_modules,src/, 
   }
 }
